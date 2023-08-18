@@ -9,10 +9,11 @@ import { GameLevels } from './common/constants';
 
 function App() {
   const [gameLevel, setGameLevel] = useState<string>();
+  const [showGameOverCard, setShowGameOverCard] = useState<boolean>(false);
   return (
     <div className="App">
       <h1>Snake Game</h1>
-      {gameLevel && <GameBoard height={600} width={600} gameLevel={gameLevel} setGameLevel={setGameLevel} />}
+      {gameLevel && !showGameOverCard && <GameBoard height={600} width={600} gameLevel={gameLevel} setShowGameOverCard={setShowGameOverCard} />}
       {!gameLevel && <Card style={{ width: '28rem', margin: 'auto' }}>
         <Card.Body>
           <Card.Title>Choose a level you want to play.</Card.Title>
@@ -24,6 +25,20 @@ function App() {
           </ButtonGroup>
         </Card.Body>
       </Card>}
+      {
+        showGameOverCard && <Card style={{ width: '36rem', margin: 'auto', padding: '1rem' }}>
+          <Card.Body>
+            <Card.Title>Game Over</Card.Title>
+            <ButtonGroup aria-label="Game level">
+              <Button onClick={() => {
+                setShowGameOverCard(false);
+                setGameLevel('');
+              }
+              }>Play Again</Button>
+            </ButtonGroup>
+          </Card.Body>
+        </Card>
+      }
     </div>
   );
 }

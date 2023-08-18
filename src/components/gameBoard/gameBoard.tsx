@@ -10,9 +10,9 @@ export interface IGameBoard {
     height: number;
     width: number;
     gameLevel: string;
-    setGameLevel: (gameLevel?: string) => void;
+    setShowGameOverCard: (showGameOverCard: boolean) => void;
 }
-const GameBoard = ({ height, width, gameLevel, setGameLevel }: IGameBoard) => {
+const GameBoard = ({ height, width, gameLevel, setShowGameOverCard }: IGameBoard) => {
     const [state, dispatch] = useReducer(snakeGameReducer, INITIAL_STATE);
     const { snakePositions, score, currentDirection } = state;
     const [gameEnded, setGameEnded] = useState<boolean>(false);
@@ -110,7 +110,7 @@ const GameBoard = ({ height, width, gameLevel, setGameLevel }: IGameBoard) => {
             dispatch(increaseSnakeAction());
             dispatch(scoreUpdatesAction(GAME_ACTION_TYPES.INCREMENT_SCORE, gameLevel));
         }
-    }, [isConsumed, foodPosition, height, width, dispatch]);
+    }, [isConsumed, foodPosition, height, width, dispatch, gameLevel]);
 
     useEffect(() => {
         //Draw on canvas each time
@@ -132,12 +132,12 @@ const GameBoard = ({ height, width, gameLevel, setGameLevel }: IGameBoard) => {
             snakePositions[0].y >= height
         ) {
             setGameEnded(true);
-            setGameLevel();
+            setShowGameOverCard(true);
             dispatch(stopGameAction());
             intervalRef.current && clearInterval(intervalRef.current)
             window.removeEventListener(KEY_DOWN_EVENT, handleKeyEvents);
         } else setGameEnded(false);
-    }, [context, foodPosition, snakePositions, height, width, dispatch, handleKeyEvents, setGameLevel]);
+    }, [context, foodPosition, snakePositions, height, width, dispatch, handleKeyEvents, setShowGameOverCard]);
 
     useEffect(() => {
         window.addEventListener(KEY_DOWN_EVENT, handleKeyEvents);
