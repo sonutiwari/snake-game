@@ -4,7 +4,7 @@ import { Point2D, clearBoard, drawObject, generateRandomPosition, hasSnakeCollid
 import { GAME_ACTION_TYPES, increaseSnakeAction, makeMoveAction, resetGameAction, scoreUpdatesAction, setCurrentDirection, stopGameAction } from "../../store/actions";
 import HowToPlay from "../howToPlay";
 import ScoreBoard from "../scoreBoard";
-import { GAME_SPEED_INTERVAL_IN_MILLISECONDS, KEY_DOWN_EVENT, KEY_NAME_VALUE_MAP, SNAKE_MOVES, SPRITE_SIZES } from "../../common/constants";
+import { COLORS, GAME_SPEED_INTERVAL_IN_MILLISECONDS, KEY_DOWN_EVENT, KEY_NAME_VALUE_MAP, SNAKE_MOVES, SPRITE_SIZES } from "../../common/constants";
 
 export interface IGameBoard {
     height: number;
@@ -93,18 +93,18 @@ const GameBoard = ({ height, width, gameLevel, setShowGameOverCard }: IGameBoard
         dispatch(resetGameAction());
         dispatch(scoreUpdatesAction(GAME_ACTION_TYPES.RESET_SCORE));
         clearBoard(context, width, height);
-        drawObject(context, snakePositions, "#436543");
+        drawObject(context, snakePositions, COLORS.SNAKE_COLOR);
         drawObject(
             context,
             [generateRandomPosition(width - SPRITE_SIZES.SNAKE_BODY_SIZE, height - SPRITE_SIZES.SNAKE_BODY_SIZE)],
-            "#ff0000"
+            COLORS.FOOD_COLOR
         );
         window.addEventListener(KEY_DOWN_EVENT, handleKeyEvents);
     }, [context, dispatch, handleKeyEvents, height, snakePositions, width]);
 
     useEffect(() => {
         if (isConsumed) {
-            const position = generateRandomPosition(width - 20, height - 20);
+            const position = generateRandomPosition(width - SPRITE_SIZES.RANDOM_POSITION_PADDING, height - SPRITE_SIZES.RANDOM_POSITION_PADDING);
             setFoodPosition(position);
             setIsConsumed(false);
             dispatch(increaseSnakeAction());
@@ -116,8 +116,8 @@ const GameBoard = ({ height, width, gameLevel, setShowGameOverCard }: IGameBoard
         //Draw on canvas each time
         setContext(canvasRef.current && canvasRef.current.getContext("2d"));
         clearBoard(context, width, height);
-        drawObject(context, snakePositions, "#000000");
-        drawObject(context, [foodPosition], "#ff0000");
+        drawObject(context, snakePositions, COLORS.SNAKE_COLOR);
+        drawObject(context, [foodPosition], COLORS.FOOD_COLOR);
 
         //When the object is consumed
         if (Math.abs(snakePositions[0].x - foodPosition?.x) <= SPRITE_SIZES.SNAKE_BODY_SIZE/2  && Math.abs(snakePositions[0].y - foodPosition?.y) <= SPRITE_SIZES.SNAKE_BODY_SIZE/2) {

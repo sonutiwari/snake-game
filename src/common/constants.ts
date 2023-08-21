@@ -32,3 +32,8 @@ export const GAME_SPEED_INTERVAL_IN_MILLISECONDS: Record<string, number> = {
     HARD: 150,
     SUPERMAN: 50
 }
+
+export const COLORS = {
+    SNAKE_COLOR: "#436543",
+    FOOD_COLOR: "#ff0000"
+}
