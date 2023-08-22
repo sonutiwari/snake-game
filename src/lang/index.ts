@@ -7,7 +7,9 @@ export const TRANSLATIONS = {
             Medium: 'Medium',
             Hard: 'Hard',
             Superman: 'Superman'
-        }
+        },
+        Game_Over: 'Game Over',
+        PLAY_AGAIN: 'Play Again'
     },
     "hi": {
         header: "साँप का खेल",
@@ -17,6 +19,8 @@ export const TRANSLATIONS = {
             Medium: 'मध्यम',
             Hard: 'मुश्किल',
             Superman: 'शक्तिमान'
-        }
+        },
+        Game_Over: 'खेल खत्म',
+        PLAY_AGAIN: 'फिर से चालू करें'
     }
 }
