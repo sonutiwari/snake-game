@@ -48,13 +48,13 @@ function App() {
       {
         showGameOverCard && <Card style={{ width: '36rem', margin: 'auto', padding: '1rem' }}>
           <Card.Body>
-            <Card.Title>Game Over</Card.Title>
+            <Card.Title>{translations.Game_Over}</Card.Title>
             <ButtonGroup aria-label="Game level">
               <Button onClick={() => {
                 setShowGameOverCard(false);
                 setGameLevel('');
               }
-              }>Play Again</Button>
+              }>{translations.PLAY_AGAIN}</Button>
             </ButtonGroup>
           </Card.Body>
         </Card>
