@@ -40,5 +40,5 @@ export const COLORS = {
 
 export const ACRONYM_LANGUAGE_MAP = {
     'en': "English",
-    'hi': "Hindi"
+    'hi': "हिंदी"
 }

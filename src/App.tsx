@@ -9,12 +9,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
+import { TRANSLATIONS } from './lang';
 
 
 function App() {
   const [gameLevel, setGameLevel] = useState<string>();
   const [showGameOverCard, setShowGameOverCard] = useState<boolean>(false);
   const [language, setLanguage] = useState<keyof typeof ACRONYM_LANGUAGE_MAP>('en');
+  const translations = TRANSLATIONS[language];
   return (
     <div className="App" id='home'>
       <Navbar expand="lg" bg='dark' data-bs-theme="dark">
@@ -30,16 +32,16 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <h1>Snake Game</h1>
+      <h1 className='my-3'>{translations.header}</h1>
       {gameLevel && !showGameOverCard && <GameBoard height={600} width={600} gameLevel={gameLevel} setShowGameOverCard={setShowGameOverCard} />}
       {!gameLevel && <Card style={{ width: '28rem', margin: 'auto' }}>
         <Card.Body>
-          <Card.Title>Choose a level you want to play.</Card.Title>
+          <Card.Title className='my-2'>{translations.chooseLevelPromptText}</Card.Title>
           <ButtonGroup aria-label="Game level">
-            <Button variant="primary" onClick={() => setGameLevel(GameLevels.EASY)}>Easy</Button>
-            <Button variant="secondary" onClick={() => setGameLevel(GameLevels.MEDIUM)}>Medium</Button>
-            <Button variant="success" onClick={() => setGameLevel(GameLevels.HARD)}>Hard</Button>
-            <Button variant="danger" onClick={() => setGameLevel(GameLevels.SUPERMAN)}>Superman</Button>
+            <Button variant="primary" onClick={() => setGameLevel(GameLevels.EASY)}>{translations.levelChoiceButtonLabels.Easy}</Button>
+            <Button variant="secondary" onClick={() => setGameLevel(GameLevels.MEDIUM)}>{translations.levelChoiceButtonLabels.Medium}</Button>
+            <Button variant="success" onClick={() => setGameLevel(GameLevels.HARD)}>{translations.levelChoiceButtonLabels.Hard}</Button>
+            <Button variant="danger" onClick={() => setGameLevel(GameLevels.SUPERMAN)}>{translations.levelChoiceButtonLabels.Superman}</Button>
           </ButtonGroup>
         </Card.Body>
       </Card>}
