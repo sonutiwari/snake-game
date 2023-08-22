@@ -37,3 +37,8 @@ export const COLORS = {
     SNAKE_COLOR: "#436543",
     FOOD_COLOR: "#ff0000"
 }
+
+export const ACRONYM_LANGUAGE_MAP = {
+    'en': "English",
+    'hi': "Hindi"
+}
