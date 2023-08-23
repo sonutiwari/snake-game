@@ -4,7 +4,7 @@ import GameBoard from './components/gameBoard';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { ACRONYM_LANGUAGE_MAP, GameLevels } from './common/constants';
+import { ACRONYM_LANGUAGE_MAP, GAME_BOARD_CONFIG, GameLevels } from './common/constants';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -33,7 +33,7 @@ function App() {
         </Container>
       </Navbar>
       <h1 className='my-3'>{translations.header}</h1>
-      {gameLevel && !showGameOverCard && <GameBoard height={600} width={600} gameLevel={gameLevel} setShowGameOverCard={setShowGameOverCard} />}
+      {gameLevel && !showGameOverCard && <GameBoard height={GAME_BOARD_CONFIG.height} width={GAME_BOARD_CONFIG.width} gameLevel={gameLevel} setShowGameOverCard={setShowGameOverCard} />}
       {!gameLevel && <Card style={{ width: '28rem', margin: 'auto' }}>
         <Card.Body>
           <Card.Title className='my-2'>{translations.chooseLevelPromptText}</Card.Title>
