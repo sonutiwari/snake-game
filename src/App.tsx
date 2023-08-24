@@ -21,7 +21,7 @@ function App() {
     <div className="App" id='home'>
       <Navbar expand="lg" bg='dark' data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">Snake Game</Navbar.Brand>
+          <Navbar.Brand href="#home">{translations.header}</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
             <Nav className="border-left pl-2 ml-auto">
