@@ -33,6 +33,11 @@ export const GAME_SPEED_INTERVAL_IN_MILLISECONDS: Record<string, number> = {
     SUPERMAN: 50
 }
 
+export const GAME_BOARD_CONFIG = {
+    width: 600,
+    height: 600
+}
+
 export const COLORS = {
     SNAKE_COLOR: "#436543",
     FOOD_COLOR: "#ff0000"
