@@ -1,32 +1,39 @@
+import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
+import GlobalContext from '../../context';
+import { TRANSLATIONS } from '../../lang';
 export interface IInstructionProps {
     resetBoard: () => void;
 }
 
-const HowToPlay = ({ resetBoard }: IInstructionProps) => (
-    <div>
-        <h3>How to Play</h3>
-        <h4>NOTE: Start the game by pressing right arrow key</h4>
+const HowToPlay = ({ resetBoard }: IInstructionProps) => {
+    const language = useContext(GlobalContext)
+    const currentPageTranslation = TRANSLATIONS[language].howToPlayPageTranslations;
+    return (
         <div>
-            <Button onClick={() => resetBoard()}>Reset game</Button>
-        </div>
-        <div>
+            <h3>{currentPageTranslation.HOW_TO_PLAY}</h3>
+            <h4>{currentPageTranslation.NOTE}</h4>
+            <div>
+                <Button onClick={() => resetBoard()}>{currentPageTranslation.RESET_GAME}</Button>
+            </div>
             <div>
                 <div>
-                    <b>Up Arrow Key &uarr;</b> Move Up
-                </div>
-                <div>
-                    <b>Left Arrow Key &larr;</b> Move Left
-                </div>
-                <div>
-                    <b>Down Arrow key &darr;</b> Move Down
-                </div>
-                <div>
-                    <b>Right Arrow key &rarr;</b> Move Right
+                    <div>
+                        <b>{currentPageTranslation.UP_ARROW_KEY} &uarr;</b> {currentPageTranslation.MOVE_UP}
+                    </div>
+                    <div>
+                        <b>{currentPageTranslation.LEFT_ARROW_KEY}  &larr;</b> {currentPageTranslation.MOVE_LEFT}
+                    </div>
+                    <div>
+                        <b>{currentPageTranslation.DOWN_ARROW_KEY}  &darr;</b> {currentPageTranslation.MOVE_DOWN}
+                    </div>
+                    <div>
+                        <b>{currentPageTranslation.RIGHT_ARROW_KEY}  &rarr;</b> {currentPageTranslation.MOVE_RIGHT}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default HowToPlay;
